@@ -63,10 +63,10 @@ export default class RecipesView {
         }
 
         try{
-            [inptTitle, inptBody].forEach(inputField => {
-                const inptTitle = this.root.querySelector('#textarea-heading');
-                const inptBody = this.root.querySelector('#editableContent');
+            const inptTitle = this.root.querySelector('#textarea-heading');
+            const inptBody = this.root.querySelector('#editableContent');
 
+            [inptTitle, inptBody].forEach(inputField => {
                 inputField.addEventListener("input", () => {
                     const updatedTitle = inptTitle.value;
                     const updatedBody = inptBody.value;
@@ -94,7 +94,7 @@ export default class RecipesView {
             const searchBar = this.root.querySelector('#first-sec-search-bar');
 
             searchBar.addEventListener("input", () => {
-                this.onRecipeSearch(searchBar.value);
+                this.onRecipeSearch(searchBar);
             });
         }
         catch(e){
@@ -106,7 +106,7 @@ export default class RecipesView {
             const browseSearchBarIco = this.root.querySelector('#browse-search-bar-ico');
     
             browseSearchBarIco.addEventListener("click", () => {
-                this.onRecipeSearch(browseSearchBar.value);
+                this.onRecipeSearch(browseSearchBar);
             });
         }
         catch(e){
@@ -137,8 +137,8 @@ export default class RecipesView {
                     <div class="first-sec-recipes-desc">
                         <h1 class="first-sec-recipes-desc-heading">${title}</h1>
                         <p>
-                        ${body.substring(0, MAX_BODY_LENGTH)}
-                        ${body.length > MAX_BODY_LENGTH ? "..." : ""}
+                            ${body.substring(0, MAX_BODY_LENGTH)}
+                            ${body.length > MAX_BODY_LENGTH ? "..." : ""}
                         </p>
                     </div>
                 </div>
@@ -184,16 +184,20 @@ export default class RecipesView {
         try{
             this.root.querySelector('#textarea-heading').value = recipe.title;
             this.root.querySelector('#editableContent').value = recipe.body;
-    
+        }
+        catch(e){console.log(e);}
+
+        try{
             this.root.querySelectorAll('.first-sec-recipes-sec').forEach(recipeList => {
                 recipeList.style.backgroundColor = "#F6F7FB";
             });
-    
+        }
+        catch(e){console.log(e);}
+
+        try{
             this.root.querySelector(`.first-sec-recipes-sec[data-note-id="${recipe.id}"]`).style.backgroundColor = "#efefef";
         }
-        catch(e){
-            console.log(e);
-        }
+        catch(e){console.log(e);}
     }
 
     updateRecipeBodyVisibility(visible) {
