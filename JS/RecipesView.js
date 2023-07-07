@@ -43,8 +43,8 @@ export default class RecipesView {
             this.root.innerHTML = `
                     <div class="browse-sec-first-sec">
                         <div class="browse-sec-search-bar">
-                            <input type="text" placeholder="Search Recipes..." value="">
-                            <i class="bi bi-search"></i>
+                            <input type="text" placeholder="Search Recipes..." value="" id="browse-search-bar">
+                            <i class="bi bi-search" id="browse-search-bar-ico"></i>
                         </div>
                     </div>
                     <div class="browse-sec-second-sec">
@@ -63,20 +63,9 @@ export default class RecipesView {
         }
 
         try{
-            const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn');
             const inptTitle = this.root.querySelector('#textarea-heading');
             const inptBody = this.root.querySelector('#editableContent');
 
-            btnAddRecipe.addEventListener("click", () => {
-                this.onRecipeAdd();
-            });
-    
-            const searchBar = this.root.querySelector('#first-sec-search-bar');
-    
-            searchBar.addEventListener("input", e => {
-                this.onRecipeSearch(searchBar.value);
-            });
-    
             [inptTitle, inptBody].forEach(inputField => {
                 inputField.addEventListener("input", () => {
                     const updatedTitle = inptTitle.value;
@@ -85,7 +74,46 @@ export default class RecipesView {
                     this.onRecipeEdit(updatedTitle, updatedBody);
                 });
             });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn')
     
+            btnAddRecipe.addEventListener("click", () => {
+                this.onRecipeAdd();
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const searchBar = this.root.querySelector('#first-sec-search-bar');
+
+            searchBar.addEventListener("input", () => {
+                this.onRecipeSearch(searchBar);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const browseSearchBar = this.root.querySelector("#browse-search-bar");
+            const browseSearchBarIco = this.root.querySelector('#browse-search-bar-ico');
+    
+            browseSearchBarIco.addEventListener("click", () => {
+                this.onRecipeSearch(browseSearchBar);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
             this.updateRecipeBodyVisibility(false);
         }
         catch(e){
@@ -109,8 +137,8 @@ export default class RecipesView {
                     <div class="first-sec-recipes-desc">
                         <h1 class="first-sec-recipes-desc-heading">${title}</h1>
                         <p>
-                        ${body.substring(0, MAX_BODY_LENGTH)}
-                        ${body.length > MAX_BODY_LENGTH ? "..." : ""}
+                            ${body.substring(0, MAX_BODY_LENGTH)}
+                            ${body.length > MAX_BODY_LENGTH ? "..." : ""}
                         </p>
                     </div>
                 </div>
@@ -156,16 +184,20 @@ export default class RecipesView {
         try{
             this.root.querySelector('#textarea-heading').value = recipe.title;
             this.root.querySelector('#editableContent').value = recipe.body;
-    
+        }
+        catch(e){console.log(e);}
+
+        try{
             this.root.querySelectorAll('.first-sec-recipes-sec').forEach(recipeList => {
                 recipeList.style.backgroundColor = "#F6F7FB";
             });
-    
+        }
+        catch(e){console.log(e);}
+
+        try{
             this.root.querySelector(`.first-sec-recipes-sec[data-note-id="${recipe.id}"]`).style.backgroundColor = "#efefef";
         }
-        catch(e){
-            console.log(e);
-        }
+        catch(e){console.log(e);}
     }
 
     updateRecipeBodyVisibility(visible) {
