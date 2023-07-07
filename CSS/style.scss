@@ -1,0 +1,860 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar{
+    display: none;
+}
+
+:root{
+    --first-color: #407AFE;
+    --second-color: #F6F7FB;
+    --third-color: #E9E9EB;
+    --forth-color: #FDFDFD;
+    --fifth-color: #FF5AA1;
+    --sixth-color: #808080;
+    --seventh-color: #E5E5E7;
+    --eighth-color: #FFFFFF;
+    --ninth-color: #000000;
+    --tenth-color: #ECECF1;
+    --eleventh-color: #EFEFEF;
+
+    --font-family: 'Montserrat', sans-serif;
+}
+
+input{
+    font-family: var(--font-family);
+}
+
+/*#region Wrappers*/
+
+body{
+    font-family: var(--font-family);
+}
+
+.wrapper{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper-pages-sec{
+    width: 100%;
+    height: 100%;
+    transition: transform .2s ease-in-out;
+}
+
+/*#endregion*/
+
+/*#region Main Sections */
+
+.main-sec{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.first-sec{
+    position: relative;
+    display: block;
+    width: 24%;
+    height: 100%;
+    background-color: var(--seventh-color);
+    overflow: hidden;
+}
+
+.second-sec{
+    position: relative;
+    display: block;
+    width: fit-content;
+    height: 100%;
+    height: 100%;
+    background-color: var(--forth-color);
+    overflow: hidden;
+}
+
+.contacts-sec{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--eighth-color);
+}
+
+/*#endregion*/
+
+/*#region Hamburguer Button*/
+
+#hamb-btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    color: var(--ninth-color);
+    cursor: pointer;
+    z-index: 2;
+    margin: 29px 30px;
+    transition: transform .2s ease-in-out;
+}
+
+/*#endregion*/
+
+/*#region SideBar Menu*/
+
+.sidebar-menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var(--first-color);
+    padding: 15px 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-right: 2px solid var(--eighth-color);
+    ul{
+        overflow: hidden;
+        a{
+            text-decoration: none;
+        }
+        li{
+            display: flex;
+            flex-direction: row;
+            color: #fff;
+            padding: 10px 30px;
+            gap: 10px;
+            align-items: center;
+            margin: 30px 0px;
+            width: 100%;
+            z-index: 0;
+            background-color: transparent;
+            position: relative;
+            height: 50px;
+            transition: color 0.4s linear;
+            overflow: hidden;
+            cursor: pointer;
+            p{
+                font-size: 18px;
+                font-weight: 700;
+            }
+            svg{
+                width: 20px;
+                height: 20px;
+            }
+        }
+        li:hover{
+            color: var(--first-color);
+        }
+        li::before{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: -1;
+            transition: transform 0.5s;
+            transform-origin: 0 0;
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            transform: scaleX(0);
+        }
+        li:hover::before{
+            transform: scaleX(1);
+        }
+    }
+}
+
+.side-logo{
+    width: 100%;
+    height: fit-content;
+    padding: 10px 15px;
+    overflow: hidden;
+}
+
+/*#endregion*/
+
+/*========== First Sections Options Bar ==========*/
+
+/*#region First Sections Options Bar*/
+
+.first-sec-options-bar{
+    width: 100%;
+    height: 27%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    background-color: var(--second-color);
+    overflow: hidden;
+}
+
+.first-sec-options-bar-type-re{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+    width: 100%;
+    height: fit-content;
+    padding: 0px 10px;
+    h1{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.first-sec-options-bar-op{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    gap: 8px;
+}
+
+.first-sec-options-bar-op-filter{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--sixth-color);
+    padding: 0px 1px;
+    align-items: center;
+    p{
+        font-size: 13px;
+    }
+    i{
+        font-size: 18px;
+    }
+}
+
+.first-sec-options-bar-search{
+    width: 100%;
+    height: 45px;
+    background-color: var(--tenth-color);
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    input{
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        padding: 0px 10px;
+    }
+    input::placeholder{
+        color: var(--sixth-color);
+        font-size: 13px;
+    }
+    input[type="text"]
+    {
+        font-size:13px;
+    }
+}
+
+.first-sec-options-bar-addbtn-aux{
+    padding: 0px 10px;
+}
+
+.first-sec-options-bar-addbtn{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--first-color);
+    color: var(--eighth-color);
+    gap: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    i{
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+    }
+    p{
+        font-weight: 700;
+        font-size: 13px;
+    }
+}
+
+/*#endregion*/
+
+/*========== First Sections Recipes Bar ==========*/
+
+/*#region First Sections Recipes Bar*/
+
+.first-sec-recipes-bar{
+    width: 100%;
+    height: 73%;
+    gap: 2px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    overflow-y: scroll;
+    .active{
+        background-color: var(--eleventh-color);
+    }
+}
+
+.first-sec-recipes-sec{
+    width: 100%;
+    height: fit-content;
+    padding: 20px 20px;
+    background-color: var(--second-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.first-sec-recipes-typedate{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    p{
+        font-size: 11px;
+        color: var(--sixth-color);
+    }
+}
+
+.first-sec-recipes-type{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    i{
+        display: flex;
+        align-items: center;
+        color: var(--fifth-color);
+        font-size: 10px;
+    }
+}
+
+.first-sec-recipes-desc{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+    overflow: hidden;
+    gap: 10px;
+    h1{
+        width: 100%;
+        height: fit-content;
+        min-height: 19px;
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    p{
+        width: 100%;
+        height: fit-content;
+        min-height: 19px;
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.5;
+    }
+}
+
+/*#endregion*/
+
+/*========== Section Section ==========*/
+
+/*#region Second Section */
+
+.second-sec{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+    gap: 10px;
+    input{
+        font-size: 1.8em;
+        font-weight: bold;
+        outline: none;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+.second-sec-textarea-sec{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+
+.second-sec-recipe-heading{
+    font-size: 1.8em;
+}
+
+.second-sec-textarea{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    overflow-y: scroll;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+[contenteditable]:empty:before{
+    content: attr(data-placeholder);
+    display: inline-block;
+    color: var(--sixth-color);
+}
+
+.second-sec-func-bar-select{
+    appearance: none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background-color: var(--eighth-color);
+    border: 1px solid var(--ninth-color);
+    padding: 0px 10px;
+}
+
+/*#endregion*/
+
+/*#region Contacts Section*/
+
+.contacts-sec{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-sec-background-wave{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    color: var(--first-color);
+    img{
+        transform: rotate(0deg);
+        width: 100%;
+        transform: translateY(-100px);
+    }
+}
+
+.contacts-sec-head-text{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0px;
+    color: var(--eighth-color);
+    h1{
+        font-size: 36px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    p{
+        font-size: 20px;
+        font-weight: 600;
+        width: fit-content;
+        height: fit-content;
+        text-align: center;
+        overflow: hidden;
+        a{
+            color: var(--eighth-color);
+        }
+    }
+}
+
+/*#region Form Section*/
+
+.contacts-sec-form{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+/*#region Form Shortcuts*/
+
+.contacts-sec-form-short{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts-sec-form-short-img{
+    position: relative;
+    width: 350px;
+    height: 350px;
+    background-image: url(../IMAGES/31151791_7739969.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contacts-sec-form-short-link{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h1{
+        font-size: 22px;
+        font-weight: 600;
+        padding: 10px;
+        border-bottom: 1px solid var(--sixth-color);
+    }
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        li{
+            position: relative;
+            width: 100%;
+            height: fit-content;
+            list-style: none;
+            a{
+                display: flex;
+                flex-direction: row;
+                text-decoration: none;
+                color: var(--ninth-color);
+                font-weight: 600;
+                font-size: 17px;
+                gap: 10px;
+                svg{
+                    color: var(--first-color);
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+        }
+    }
+}
+
+/*#endregion*/
+
+/*#region Form Fields*/
+
+.contacts-sec-form-sec{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    fieldset{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border: 1px solid var(--sixth-color);
+        border-radius: 10px;
+        background-color: var(--eighth-color);
+        gap: 20px;
+        #submit-btn{
+            width: 100%;
+            height: 60px;
+            border-radius: 10px;
+            background-color: var(--first-color);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--eighth-color);
+        }
+    }
+}
+
+.contacts-sec-form-sec-fields-wrapper{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contacts-sec-form-sec-fields{
+    position: relative;
+    width: 350px;
+    height: 60px;
+    border: 1px solid var(--sixth-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 20px;
+    color: var(--sixth-color);
+    svg{
+        width: 22px;
+        height: 22px;
+    }
+    input{
+        outline: none;
+        border: none;
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 500;
+        width: 100%;
+    }
+}
+
+.message{
+    align-items: start;
+    height: 180px;
+    padding: 18px;
+    textarea{
+        padding: 2px 0px;
+        height: 100%;
+        width: 100%;
+        resize: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: var(--font-family);
+    }
+}
+
+/*#endregion*/
+
+/*#endregion*/
+
+/*#endregion*/
+
+/*#region Home Section*/
+
+.home-sec{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--eighth-color);
+    overflow: hidden;
+    padding: 0px 46px;
+}
+
+.home-sec-wrapper{
+    position: relative;
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.home-sec-head-text{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    svg{
+        width: 150px;
+        height: 140px;
+    }
+}
+
+.home-sec-head-text-wrapper{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h1{
+        font-size: 38px;
+        font-weight: 700;
+    }
+    p{
+        font-size: 22px;
+        font-weight: 500;
+    }
+}
+
+.home-sec-search-bar{
+    position: relative;
+    width: 565px;
+    height: 65px;
+    background-color: transparent;
+    border: 2px solid var(--sixth-color);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    input{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        outline: none;
+    }
+    input::placeholder{
+        color: var(--sixth-color);
+        font-size: 19px;
+    }
+    input[type="text"]
+    {
+        font-size: 19px;
+    }
+    i{
+        position: absolute;
+        right: 0;
+        padding: 0px 20px;
+        width: fit-content;
+        height: fit-content;
+        font-size: 24px;
+        color: var(--sixth-color);
+        z-index: 9999;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.home-sec-background-wave{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    color: var(--first-color);
+    img{
+        transform: rotate(180deg) translateY(-200px);
+        width: 100%;
+    }
+}
+
+.home-sec-background-chef{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: fit-content;
+    height: fit-content;
+    img{
+        width: 952px;
+        transform: translateY(84px) translateX(150px);
+    }
+}
+
+/*#endregion*/
+
+/*#region Browse Section*/
+
+.browse-sec{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--eighth-color);
+}
+
+.browse-sec-first-sec{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: fit-content;
+    padding: 17px 100px;
+}
+
+.browse-sec-search-bar{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: 2px solid var(--sixth-color);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    input{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        outline: none;
+    }
+    input::placeholder{
+        color: var(--sixth-color);
+        font-size: 14px;
+    }
+    input[type="text"]
+    {
+        font-size: 14px;
+    }
+    i{
+        position: absolute;
+        right: 0;
+        padding: 0px 20px;
+        width: fit-content;
+        height: fit-content;
+        font-size: 20px;
+        color: var(--sixth-color);
+        z-index: 9999;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.browse-sec-second-sec{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    .first-sec{
+        .first-sec-recipes-bar{
+            height: 100%;
+        }
+    }
+}
+
+/*#endregion*/
