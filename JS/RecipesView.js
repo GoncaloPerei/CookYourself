@@ -43,8 +43,8 @@ export default class RecipesView {
             this.root.innerHTML = `
                     <div class="browse-sec-first-sec">
                         <div class="browse-sec-search-bar">
-                            <input type="text" placeholder="Search Recipes..." value="">
-                            <i class="bi bi-search"></i>
+                            <input type="text" placeholder="Search Recipes..." value="" id="browse-search-bar">
+                            <i class="bi bi-search" id="browse-search-bar-ico"></i>
                         </div>
                     </div>
                     <div class="browse-sec-second-sec">
@@ -63,21 +63,10 @@ export default class RecipesView {
         }
 
         try{
-            const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn');
-            const inptTitle = this.root.querySelector('#textarea-heading');
-            const inptBody = this.root.querySelector('#editableContent');
-
-            btnAddRecipe.addEventListener("click", () => {
-                this.onRecipeAdd();
-            });
-    
-            const searchBar = this.root.querySelector('#first-sec-search-bar');
-    
-            searchBar.addEventListener("input", e => {
-                this.onRecipeSearch(searchBar.value);
-            });
-    
             [inptTitle, inptBody].forEach(inputField => {
+                const inptTitle = this.root.querySelector('#textarea-heading');
+                const inptBody = this.root.querySelector('#editableContent');
+
                 inputField.addEventListener("input", () => {
                     const updatedTitle = inptTitle.value;
                     const updatedBody = inptBody.value;
@@ -85,7 +74,46 @@ export default class RecipesView {
                     this.onRecipeEdit(updatedTitle, updatedBody);
                 });
             });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn')
     
+            btnAddRecipe.addEventListener("click", () => {
+                this.onRecipeAdd();
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const searchBar = this.root.querySelector('#first-sec-search-bar');
+
+            searchBar.addEventListener("input", () => {
+                this.onRecipeSearch(searchBar.value);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
+            const browseSearchBar = this.root.querySelector("#browse-search-bar");
+            const browseSearchBarIco = this.root.querySelector('#browse-search-bar-ico');
+    
+            browseSearchBarIco.addEventListener("click", () => {
+                this.onRecipeSearch(browseSearchBar.value);
+            });
+        }
+        catch(e){
+            console.log(e);
+        }
+
+        try{
             this.updateRecipeBodyVisibility(false);
         }
         catch(e){

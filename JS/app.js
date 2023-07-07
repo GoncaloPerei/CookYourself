@@ -12,25 +12,46 @@ export default class App{
     }
 
     _refreshRecipes(){
-        const recipes = RecipesAPI.getAllRecipes();
-        this._setRecipes(recipes);
-        this._setActiveRecipe(recipes[0]);
+        try{
+            const recipes = RecipesAPI.getAllRecipes();
+            this._setRecipes(recipes);
+            //this._setActiveRecipe(recipes[0]);
+        }
+        catch(e){console.log(e);}
     }
 
     _setRecipes(recipes){
-        this.recipes = recipes;
+        try{
+            this.recipes = recipes;
+        }
+        catch(e){console.log(e);}
 
-        this.view.updateRecipeList(recipes);
-        this.view.updateRecipeBodyVisibility(recipes.length > 0);
-        this.view.updateRecipeCount(recipes.length);
+        try{
+            this.view.updateRecipeList(recipes);
+        }
+        catch(e){console.log(e);}
+
+        try{
+            this.view.updateRecipeBodyVisibility(recipes.length > 0);
+        }
+        catch(e){console.log(e);}
+
+        try{
+            this.view.updateRecipeCount(recipes.length);
+        }
+        catch(e){console.log(e);}
     }
 
     _setActiveRecipe(recipe){
         try{
             this.activeRecipe = recipe;
+        }
+        catch(e){console.log(e);}
+
+        try{
             this.view.updateActiveRecipe(recipe);
         }
-        catch(e){}
+        catch(e){console.log(e);}
     }
 
     _handlers(){
