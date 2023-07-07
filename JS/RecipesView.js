@@ -62,99 +62,127 @@ export default class RecipesView {
             `;
         }
 
-        const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn');
-        const inptTitle = this.root.querySelector('#textarea-heading');
-        const inptBody = this.root.querySelector('#editableContent');
+        try{
+            const btnAddRecipe = this.root.querySelector('#first-sec-options-bar-addbtn');
+            const inptTitle = this.root.querySelector('#textarea-heading');
+            const inptBody = this.root.querySelector('#editableContent');
 
-        btnAddRecipe.addEventListener("click", () => {
-            this.onRecipeAdd();
-        });
-
-        const searchBar = this.root.querySelector('#first-sec-search-bar');
-
-        searchBar.addEventListener("input", e => {
-            this.onRecipeSearch(searchBar.value);
-        });
-
-
-        [inptTitle, inptBody].forEach(inputField => {
-            inputField.addEventListener("input", () => {
-                const updatedTitle = inptTitle.value;
-                const updatedBody = inptBody.value;
-
-                this.onRecipeEdit(updatedTitle, updatedBody);
+            btnAddRecipe.addEventListener("click", () => {
+                this.onRecipeAdd();
             });
-        });
-
-        this.updateRecipeBodyVisibility(false);
+    
+            const searchBar = this.root.querySelector('#first-sec-search-bar');
+    
+            searchBar.addEventListener("input", e => {
+                this.onRecipeSearch(searchBar.value);
+            });
+    
+            [inptTitle, inptBody].forEach(inputField => {
+                inputField.addEventListener("input", () => {
+                    const updatedTitle = inptTitle.value;
+                    const updatedBody = inptBody.value;
+    
+                    this.onRecipeEdit(updatedTitle, updatedBody);
+                });
+            });
+    
+            this.updateRecipeBodyVisibility(false);
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 
     _createListItemHTML(id, title, body, updated){
         const MAX_BODY_LENGTH = 60;
 
-        return `
-            <div class="first-sec-recipes-sec" data-note-id="${id}">
-                <div class="first-sec-recipes-typedate">
-                    <div class="first-sec-recipes-type">
-                        <i class="bi bi-circle-fill"></i>
-                        <p>General</p>
+        try{
+            return `
+                <div class="first-sec-recipes-sec" data-note-id="${id}">
+                    <div class="first-sec-recipes-typedate">
+                        <div class="first-sec-recipes-type">
+                            <i class="bi bi-circle-fill"></i>
+                            <p>General</p>
+                        </div>
+                        <p>${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short"})}</p>
                     </div>
-                    <p>${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short"})}</p>
+                    <div class="first-sec-recipes-desc">
+                        <h1 class="first-sec-recipes-desc-heading">${title}</h1>
+                        <p>
+                        ${body.substring(0, MAX_BODY_LENGTH)}
+                        ${body.length > MAX_BODY_LENGTH ? "..." : ""}
+                        </p>
+                    </div>
                 </div>
-                <div class="first-sec-recipes-desc">
-                    <h1 class="first-sec-recipes-desc-heading">${title}</h1>
-                    <p>
-                    ${body.substring(0, MAX_BODY_LENGTH)}
-                    ${body.length > MAX_BODY_LENGTH ? "..." : ""}
-                    </p>
-                </div>
-            </div>
-        `;
+            `;
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 
     updateRecipeList(recipes){
-        const recipesListContainer = this.root.querySelector('.first-sec-recipes-bar');
-
-        recipesListContainer.innerHTML = "";
-
-        for(const recipe of recipes){
-            const html = this._createListItemHTML(recipe.id, recipe.title, recipe.body, new Date(recipe.updated));
-
-            recipesListContainer.insertAdjacentHTML("beforeend", html);
+        try{
+            const recipesListContainer = this.root.querySelector('#recipes-bar');
+    
+            recipesListContainer.innerHTML = "";
+    
+            for(const recipe of recipes){
+                const html = this._createListItemHTML(recipe.id, recipe.title, recipe.body, new Date(recipe.updated));
+    
+                recipesListContainer.insertAdjacentHTML("beforeend", html);
+            }
+    
+            recipesListContainer.querySelectorAll('.first-sec-recipes-sec').forEach(recipesList => {
+                recipesList.addEventListener('click', () => {
+                    this.onRecipeSelect(recipesList.dataset.noteId);
+                });
+    
+                recipesList.addEventListener('dblclick', () => {
+                    const doDelete = confirm('Are you sure you want to delete this?');
+    
+                    if(doDelete){
+                        this.onRecipeDelete(recipesList.dataset.noteId);
+                    }
+                });
+            });
         }
-
-        recipesListContainer.querySelectorAll('.first-sec-recipes-sec').forEach(recipesList => {
-            recipesList.addEventListener('click', () => {
-                this.onRecipeSelect(recipesList.dataset.noteId);
-            });
-
-            recipesList.addEventListener('dblclick', () => {
-                const doDelete = confirm('Are you sure you want to delete this?');
-
-                if(doDelete){
-                    this.onRecipeDelete(recipesList.dataset.noteId);
-                }
-            });
-        });
-
+        catch(e){
+            console.log(e);
+        }
     }
 
     updateActiveRecipe(recipe) {
-        this.root.querySelector('#textarea-heading').value = recipe.title;
-        this.root.querySelector('#editableContent').value = recipe.body;
-
-        this.root.querySelectorAll('.first-sec-recipes-sec').forEach(recipeList => {
-            recipeList.style.backgroundColor = "#F6F7FB";
-        });
-
-        this.root.querySelector(`.first-sec-recipes-sec[data-note-id="${recipe.id}"]`).style.backgroundColor = "#efefef";
+        try{
+            this.root.querySelector('#textarea-heading').value = recipe.title;
+            this.root.querySelector('#editableContent').value = recipe.body;
+    
+            this.root.querySelectorAll('.first-sec-recipes-sec').forEach(recipeList => {
+                recipeList.style.backgroundColor = "#F6F7FB";
+            });
+    
+            this.root.querySelector(`.first-sec-recipes-sec[data-note-id="${recipe.id}"]`).style.backgroundColor = "#efefef";
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 
     updateRecipeBodyVisibility(visible) {
-        this.root.querySelector('.second-sec').style.visibility = visible ? "visible" : "hidden";
+        try{
+            this.root.querySelector('.second-sec').style.visibility = visible ? "visible" : "hidden";
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 
     updateRecipeCount(count){
-        this.root.querySelector('.first-sec-options-bar-op-filter-p').innerHTML = `${count} Recipes`;
+        try{
+            this.root.querySelector('.first-sec-options-bar-op-filter-p').innerHTML = `${count} Recipes`;
+        }
+        catch(e){
+            console.log(e);
+        }
     }
 }
