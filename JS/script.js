@@ -1,47 +1,53 @@
 import App from './app.js';
-try{
-    const root = document.getElementById("app");
-    const app = new App(root);
-}
-catch(e){
-    console.log(e);
-}
-
 import EmailView from './EmailView.js';
-
-try{
-    const root = document.getElementById("form");
-    const emailview = new EmailView(root);
-}
-catch(e){
-    console.log(e);
-}
-
-//#region Hamburguer Button
-const hambBTN = document.querySelector('#hamb-btn');
-const wrapperSec = document.querySelector('.wrapper-pages-sec');
-
-let aux = false;
-
-hambBTN.addEventListener("click", () => {
-    if(aux === false){
-        updateMenuVisible('closed');
-        aux = true;
+window.onload=()=>{
+    if(document.URL.includes("recipesPG.html") || document.URL.includes("browsePG.html")){
+        try{
+            const root = document.getElementById("app");
+            const app = new App(root);
+        }
+        catch(e){
+            console.log(e);
+        }
     }
-    else if(aux === true){
-        updateMenuVisible('open');
-        aux = false;
-    }
-});
 
-function updateMenuVisible(menuEvent){
-    if(menuEvent === 'closed'){
-        wrapperSec.style.transform = `translateX(300px)`;
-        hambBTN.style.transform = `translateX(300px)`;
+    if(document.URL.includes("contactsPG.html")){
+        try{
+            const root = document.getElementById("form");
+            const emailview = new EmailView(root);
+        }
+        catch(e){
+            console.log(e);
+        }
     }
-    else if(menuEvent === 'open'){
-        wrapperSec.style.transform = `translateX(0px)`;
-        hambBTN.style.transform = `translateX(0px)`;
+
+    
+    //#region Hamburguer Button
+    const hambBTN = document.querySelector('#hamb-btn');
+    const wrapperSec = document.querySelector('.wrapper-pages-sec');
+    
+    let aux = false;
+    
+    hambBTN.addEventListener("click", () => {
+        if(aux === false){
+            updateMenuVisible('closed');
+            aux = true;
+        }
+        else if(aux === true){
+            updateMenuVisible('open');
+            aux = false;
+        }
+    });
+    
+    function updateMenuVisible(menuEvent){
+        if(menuEvent === 'closed'){
+            wrapperSec.style.transform = `translateX(300px)`;
+            hambBTN.style.transform = `translateX(300px)`;
+        }
+        else if(menuEvent === 'open'){
+            wrapperSec.style.transform = `translateX(0px)`;
+            hambBTN.style.transform = `translateX(0px)`;
+        }
     }
 }
 
