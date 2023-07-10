@@ -39,6 +39,7 @@ export default class App{
             this.view.updateRecipeCount(recipes.length);
         }
         catch(e){console.log(e);}
+
         try{
             this._setActiveRecipe(recipes.find(recipe => recipe.id = this.activeRecipe.id));
         }
@@ -91,8 +92,11 @@ export default class App{
                 if(recipeTitle.value != ''){
                     this._refreshRecipes();
                     const searchedRecipe = this.recipes.filter(recipe => recipe.title.includes(recipeTitle.value));
-                    return this._setRecipes(searchedRecipe);
+                    console.log(searchedRecipe);
+                    return 0;
+                    //return this._setRecipes(searchedRecipe);
                 }
+                
                 this._refreshRecipes();
             }
         };

@@ -1,7 +1,7 @@
 import App from './app.js';
 import EmailView from './EmailView.js';
 window.onload=()=>{
-    if(document.URL.includes("recipesPG.html") || document.URL.includes("browsePG.html")){
+    if(document.URL.includes("recipesPG.html") || document.URL.includes("browsePG.html") || document.URL.includes("index.html")){
         try{
             const root = document.getElementById("app");
             const app = new App(root);
